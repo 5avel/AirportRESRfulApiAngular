@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>AirportRESRfulApi.BLL</AssemblyName>
+    <RootNamespace>AirportRESRfulApi.BLL</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="7.6.104" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\AirportRESRfulApi.DAL.csproj" />
+    <ProjectReference Include="..\Shared\AirportRESRfulApi.Shared.csproj" />
+  </ItemGroup>
+</Project>
