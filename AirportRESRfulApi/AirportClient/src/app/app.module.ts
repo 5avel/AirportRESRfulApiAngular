@@ -24,8 +24,8 @@ import { TicketsComponent } from './tickets/tickets.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: FlighsComponent, pathMatch: 'full' },
-      { path: 'counter', component: DeparturesComponent },
-      { path: 'fetch-data', component: TicketsComponent },
+      { path: 'departures', component: DeparturesComponent },
+      { path: 'tickets', component: TicketsComponent },
     ])
   ],
   providers: [],
