@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { FlighsComponent } from './flighs/flighs.component';
+import { FlightsService } from './services/flighs.service';
 import { DeparturesComponent } from './departures/departures.component';
 import { TicketsComponent } from './tickets/tickets.component';
 
@@ -28,7 +29,7 @@ import { TicketsComponent } from './tickets/tickets.component';
       { path: 'tickets', component: TicketsComponent },
     ])
   ],
-  providers: [],
+  providers: [FlightsService], // регистрация сервисов
   bootstrap: [AppComponent]
 })
 export class AppModule { }

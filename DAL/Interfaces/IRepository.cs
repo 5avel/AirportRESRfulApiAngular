@@ -15,7 +15,7 @@ namespace AirportRESRfulApi.DAL.Interfaces
         Task<TEntity> AddAsync(TEntity entity);
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> filter);
         Task<ICollection<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> match);
-        Task<int> DeleteAsync(TEntity entity);
+        Task<int> DeleteAsync(int id);
         Task<TEntity> UpdateAsync(TEntity entity, object key);
      #endregion Async
     }

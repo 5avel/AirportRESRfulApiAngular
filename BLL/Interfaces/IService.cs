@@ -9,7 +9,7 @@ namespace AirportRESRfulApi.BLL.Interfaces
 {
     public interface IService<TEntity, TEntityDto> where TEntity : Entity where TEntityDto : BaseDto
     {
-        Task<int> DeleteAsync(TEntityDto entity);
+        Task<int> DeleteAsync(int id);
         Task<ICollection<TEntityDto>> GetAllAsync();
         Task<TEntityDto> GetAsync(int id);
         Task<TEntityDto> AddAsync(TEntityDto entity);

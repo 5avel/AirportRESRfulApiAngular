@@ -9,6 +9,9 @@
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="AirportClient\src\app\models\flight.ts" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
@@ -20,5 +23,8 @@
     <ProjectReference Include="..\BLL\AirportRESRfulApi.BLL.csproj" />
     <ProjectReference Include="..\DAL\AirportRESRfulApi.DAL.csproj" />
     <ProjectReference Include="..\Shared\AirportRESRfulApi.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="AirportClient\src\app\models\flight.ts" />
   </ItemGroup>
 </Project>
