@@ -32,10 +32,15 @@ export class FlighsComponent implements OnInit {
 
   private loadFlights() {
     this.service.getFlights().subscribe((data: Flight[]) => {
-      //console.log(data);
-      this.flights = data;
+      this.flights = data.map(x => {
+        x.departureTime = x.departureTime.slice(0, 16);
+        x.arrivalTime = x.arrivalTime.slice(0, 16);
+        return x;
+      });
     });
   }
+
+ 
 
   addFlight() {
     this.editedFlight = new Flight(0, "", "", "", "", "");

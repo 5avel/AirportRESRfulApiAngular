@@ -29,9 +29,9 @@
   <td>{{flight.id}}</td>
   <td>{{flight.flightNumber}}</td>
   <td>{{flight.departurePoint}}</td>
-  <td>{{flight.departureTime | date:'yyyy-MM-dd'}}</td>
+  <td>{{flight.departureTime | date:'yyyy-MM-dd HH:mm'}}</td>
   <td>{{flight.destinationPoint}}</td>
-  <td>{{flight.arrivalTime}}</td>
+  <td>{{flight.arrivalTime | date:'yyyy-MM-dd HH:mm'}}</td>
   <td>
     <input type="button" value="Изменить" class="btn btn-default" (click)="editFlight(flight)" />
   </td>
@@ -52,13 +52,13 @@
     <input type="text" [(ngModel)]="editedFlight.departurePoint" class="form-control" />
   </td>
   <td>
-    <input type="date" [(ngModel)]="editedFlight.departureTime" class="form-control" />
+    <input type="datetime-local"  [(ngModel)]="editedFlight.departureTime" class="form-control" />
   </td>
   <td>
     <input type="text"  [(ngModel)]="editedFlight.destinationPoint" class="form-control" />
   </td>
   <td>
-    <input type="text" [(ngModel)]="editedFlight.arrivalTime" class="form-control" />
+    <input type="datetime-local" [(ngModel)]="editedFlight.arrivalTime" class="form-control" />
   </td>
   <td>
     <input type="button" value="Сохранить" (click)="saveFlight()" class="btn btn-success" />

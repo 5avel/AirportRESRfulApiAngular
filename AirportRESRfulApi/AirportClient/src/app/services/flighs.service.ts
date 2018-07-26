@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Flight } from '../models/flight';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class FlightsService {
   }
 
   updateFlight(id: number, flight: Flight) {
-    return this.http.put(this.url+'/'+ id.toString(), flight);
+    return this.http.put(this.url + '/'+ id.toString(), flight);
   }
 
   deleteFlight(flight: Flight) {
