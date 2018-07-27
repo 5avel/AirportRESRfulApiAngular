@@ -1,0 +1,24 @@
+<h1>Departures list</h1>
+<input type="button" value="Добавить" class="btn btn-default"  [routerLink]='["/departures/new"]' />
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>FlightId</td>
+      <td>FlightNumber</td>
+      <td>departureTime</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entity of departures">
+      <td>{{entity.id}}</td>
+      <td>{{entity.flightId}}</td>
+      <td>{{entity.flightNumber}}</td>
+      <td>{{entity.departureTime | date:'yyyy-MM-dd HH:mm'}}</td>
+      <td>
+        <input type="button" value="View details" class="btn btn-default" [routerLink]="['/departures', entity.id]"  />
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -39,7 +39,7 @@ namespace AirportRESRfulApi.Controllers
         {
             var result = await _departuresSrvice.AddAsync(entity);
 
-            if (result == null) return NotFound();
+            //if (result == null) return NotFound();
 
             return Ok(result);
         }
@@ -55,9 +55,9 @@ namespace AirportRESRfulApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromBody] DepartureDto entity)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = await _departuresSrvice.DeleteAsync(entity);
+            var result = await _departuresSrvice.DeleteAsync(id);
 
             return Ok();
         }

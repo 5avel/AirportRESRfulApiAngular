@@ -1,8 +1,6 @@
 ﻿using AirportRESRfulApi.BLL.Interfaces;
-using AirportRESRfulApi.Shared.DTO;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -49,8 +47,8 @@ namespace AirportRESRfulApi.Controllers
         }
 
         // GET http://localhost:5000/api/Tickets/Bay/2
-        [HttpGet("Bay/{id}")]
-        public async Task<IActionResult> BayById(int id)
+        [HttpGet("Buy/{id}")]
+        public async Task<IActionResult> BuyById(int id)
         {
             var result = await _ticketSrvice.BuyByIdAsync(id);
 

@@ -13,7 +13,7 @@
     <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
       <ul class='nav navbar-nav'>
         <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a [routerLink]='["/"]' (click)='collapse()'>
+          <a [routerLink]='["/flights"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-home'></span> Flights
           </a>
         </li>
@@ -27,6 +27,21 @@
             <span class='glyphicon glyphicon-th-list'></span> Tickets
           </a>
         </li>
+        <li [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/crews"]' (click)='collapse()'>
+              <span class='glyphicon glyphicon-th-list'></span> Crews
+            </a>
+          </li>
+          <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/pilots"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Pilots
+              </a>
+            </li>
+            <li [routerLinkActive]='["link-active"]'>
+                <a [routerLink]='["/stewardesses"]' (click)='collapse()'>
+                  <span class='glyphicon glyphicon-th-list'></span> Stewardesses
+                </a>
+              </li>
       </ul>
     </div>
   </div>

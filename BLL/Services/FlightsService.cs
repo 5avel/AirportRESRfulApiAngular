@@ -21,25 +21,25 @@ namespace AirportRESRfulApi.BLL.Services
             _validator = validator;
         }
 
-        public Task<DateTimeOffset> Delay(int millisecondsTimeout)
-        {
-            TaskCompletionSource<DateTimeOffset> tcs = null;
-            Timer timer = null;
+        //public Task<DateTimeOffset> Delay(int millisecondsTimeout)
+        //{
+        //    TaskCompletionSource<DateTimeOffset> tcs = null;
+        //    Timer timer = null;
 
-            timer = new Timer(delegate
-            {
-                timer.Dispose();
-                tcs.TrySetResult(DateTimeOffset.UtcNow);
-            }, null, Timeout.Infinite, Timeout.Infinite);
+        //    timer = new Timer(delegate
+        //    {
+        //        timer.Dispose();
+        //        tcs.TrySetResult(DateTimeOffset.UtcNow);
+        //    }, null, Timeout.Infinite, Timeout.Infinite);
 
-            tcs = new TaskCompletionSource<DateTimeOffset>(timer);
-            timer.Change(millisecondsTimeout, Timeout.Infinite);
-            return tcs.Task;
-        }
+        //    tcs = new TaskCompletionSource<DateTimeOffset>(timer);
+        //    timer.Change(millisecondsTimeout, Timeout.Infinite);
+        //    return tcs.Task;
+        //}
 
         public override async Task<ICollection<FlightDto>> GetAllAsync()
         {
-            await Delay(10000);
+            //await Delay(10000);
             return await base.GetAllAsync();
         }
 

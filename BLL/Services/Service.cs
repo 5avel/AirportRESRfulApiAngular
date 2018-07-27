@@ -25,19 +25,18 @@ namespace AirportRESRfulApi.BLL.Services
 
         public virtual async Task<TEntityDto> AddAsync(TEntityDto entity)
         {
+            entity.Id = 0;
             TEntity makingEntity = _mapper.Map<TEntityDto, TEntity>(entity);
             TEntity makedEntity = await _repository.AddAsync(makingEntity);
-            entity.Id = 0;
+            
             await _unitOfWork.SaveChangesAsync();
 
             return _mapper.Map<TEntity, TEntityDto>(makedEntity);
         }
 
-        public virtual async Task<int> DeleteAsync(TEntityDto entity)
+        public virtual async Task<int> DeleteAsync(int id)
         {
-            TEntity deletingEntity = _mapper.Map<TEntityDto, TEntity>(entity);
-
-            var result = await _repository.DeleteAsync(deletingEntity);
+            var result = await _repository.DeleteAsync(id);
             var saveResult = await _unitOfWork.SaveChangesAsync();
 
             return result;
@@ -60,11 +59,11 @@ namespace AirportRESRfulApi.BLL.Services
         public virtual async Task<TEntityDto> UpdateAsync(TEntityDto entity, int key)
         {
             TEntity updatingEntity = _mapper.Map<TEntityDto, TEntity>(entity);
-            TEntity udatedEntity = await _repository.UpdateAsync(updatingEntity, key);
+             
+            var result = _mapper.Map<TEntity, TEntityDto>(await _repository.UpdateAsync(updatingEntity, key));
+             await _unitOfWork.SaveChangesAsync();
 
-            var saveResult = await _unitOfWork.SaveChangesAsync();
-
-            return _mapper.Map<TEntity, TEntityDto>(udatedEntity);
+            return result;
         }
     }
 }

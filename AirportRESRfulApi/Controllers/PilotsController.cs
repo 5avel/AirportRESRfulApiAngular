@@ -52,9 +52,9 @@ namespace AirportRESRfulApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromBody] PilotDto entity)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = await _pilotsSrvice.DeleteAsync(entity);
+            var result = await _pilotsSrvice.DeleteAsync(id);
 
             return Ok();
         }

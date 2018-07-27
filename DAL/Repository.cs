@@ -47,27 +47,29 @@ namespace AirportRESRfulApi.DAL
             return await context.Set<TEntity>().Where(filter).ToListAsync();
         }
 
-        public virtual async Task<int> DeleteAsync(TEntity entity)
+        public virtual async Task<int> DeleteAsync(int id)
         {
-            if (entity == null) return 0;
+            if (id == 0) return id;
 
-            TEntity exist = await context.Set<TEntity>().FindAsync(entity.Id);
+            TEntity exist = await context.Set<TEntity>().FindAsync(id);
 
             context.Set<TEntity>().Remove(exist);
-            return entity.Id;
+            return id;
         }
 
         public virtual async Task<TEntity> UpdateAsync(TEntity entity, object key)
         {
-            if (entity == null) return null;
-
-            TEntity exist = await context.Set<TEntity>().FindAsync(key);
-            if (exist != null)
+            var _dbSet = context.Set<TEntity>();
+            TEntity entityToUpdate = await
+            _dbSet.AsNoTracking().SingleOrDefaultAsync(e => e.Id == entity.Id);
+            if (entityToUpdate == null)
             {
-                context.Entry(exist).CurrentValues.SetValues(entity);
-                await context.SaveChangesAsync();
+                //return null;
+                throw new ArgumentNullException($"No {nameof(TEntity)}  Entity was provided for Update");
             }
-            return exist;
+
+            _dbSet.Update(entity);
+            return entity;
         }
 
         #endregion Async

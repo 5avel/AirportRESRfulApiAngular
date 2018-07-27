@@ -4,7 +4,7 @@
     public class Crew : Entity
     {
         public int? DepartureId { get; set; }
-        public int RemoteId { get; set; }
+        public string Name { get; set; }
         public Departure Departure { get; set; }
 
         public Pilot Pilot { set; get; }

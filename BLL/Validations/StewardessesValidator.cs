@@ -21,7 +21,7 @@ namespace AirportRESRfulApi.BLL.Validations
               .MinimumLength(3)
               .MaximumLength(100);
 
-            RuleFor(x => x.BirthDate)
+            RuleFor(x => x.Birthday)
               .NotNull()
               .NotEmpty();
         }
