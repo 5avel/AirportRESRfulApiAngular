@@ -25,10 +25,10 @@ namespace AirportRESRfulApi.DAL
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(this.configuration.GetConnectionString("AirportMSSQLlocaldb"));
+            //optionsBuilder.UseSqlServer(this.configuration.GetConnectionString("AirportMSSQLlocaldb"));
 
             // ForMac))
-            //optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
+            optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -8,7 +8,7 @@
 <ng-template #readOnlyTemplate let-entity>
 <form >
   <div class="form-group">
-    <label for="PilotID" class="col-sm-4 col-form-label">PilotID</label>
+    <label for="PilotID" class="col-sm-4 col-form-label">ID</label>
     <input id="PilotID" type="text" readonly class="form-control" value="{{entity?.id}}">
   </div>
   <div class="form-group">
@@ -16,20 +16,20 @@
       <input id="crewId" type="text" readonly  class="form-control" value="{{entity?.crewId}}" name="id" >
     </div>
   <div class="form-group">
-    <label for="firstName" class="col-sm-4 col-form-label">Flight firstName</label>
-    <input id="firstName" type="text" readonly class="form-control" value="{{entity?.firstName}}">
+    <label for="firstName1" class="col-sm-4 col-form-label"> firstName</label>
+    <input id="firstName1" type="text" readonly class="form-control" value="{{entity?.firstName}}">
   </div>
   <div class="form-group">
-    <label for="lastName" class="col-sm-4 col-form-label">Pilot lastName</label>
-    <input id="lastName" type="text" readonly class="form-control" value="{{entity?.lastName}}">
+    <label for="lastName1" class="col-sm-4 col-form-label"> lastName</label>
+    <input id="lastName1" type="text" readonly class="form-control" value="{{entity?.lastName}}">
   </div>
   <div class="form-group">
-      <label for="birthDate" class="col-sm-4 col-form-label">Pilot birthDate</label>
-      <input id="birthDate" type="datetime-local" readonly class="form-control" value="{{entity?.birthday}}">
+      <label for="birthDate1" class="col-sm-4 col-form-label"> birthDate</label>
+      <input id="birthDate1" type="datetime-local" readonly class="form-control" value="{{entity?.birthday}}">
     </div>
     <div class="form-group">
-        <label for="experience" class="col-sm-4 col-form-label">Pilot experience</label>
-        <input id="experience" type="text" readonly class="form-control" value="{{entity?.experience}}">
+        <label for="experience1" class="col-sm-4 col-form-label"> experience</label>
+        <input id="experience1" type="text" readonly class="form-control" value="{{entity?.experience}}">
       </div>
   <div class="form-group">
     <input type="button" value="Изменить" class="btn btn-info form-control" (click)="edit()" />
@@ -49,26 +49,67 @@
         </div>
         <div class="form-group">
             <label for="crewId" class="col-sm-4 col-form-label">Crew Id</label>
-            <input id="crewId" type="text"  class="form-control" [(ngModel)]="editedPilot.crewId" name="id" >
+            <input id="crewId" #crewId="ngModel" type="text" required  class="form-control" [(ngModel)]="editedPilot.crewId" name="crewId" >
+            <div *ngIf="crewId?.invalid && (crewId.dirty || crewId.touched)"
+              class="alert alert-danger">
+              <div *ngIf="crewId.errors.required">
+                   is required.
+              </div>
+            </div>
           </div>
         <div class="form-group">
           <label for="firstName" class="col-sm-4 col-form-label">firstName</label>
-          <input id="firstName" type="text"  class="form-control" [(ngModel)]="editedPilot.firstName" name="firstName" >
+          <input id="firstName" #firstName="ngModel" type="text" required minlength="3" maxlength="50" class="form-control" [(ngModel)]="editedPilot.firstName" name="firstName" >
+          <div *ngIf="editedPilot.firstName?.invalid && (firstName.dirty || firstName.touched)"
+            class="alert alert-danger">
+            <div *ngIf="firstName.errors.required">
+                flightNumber is required.
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                flightNumber must be at least 4 characters long.
+            </div>
+          </div>
         </div>
         <div class="form-group">
             <label for="lastName" class="col-sm-4 col-form-label">Pilot lastName</label>
-            <input id="lastName" type="text" class="form-control" [(ngModel)]="editedPilot.lastName" name="lastName" >
+            <input id="lastName" #lastName="ngModel" type="text" required minlength="3" maxlength="50" class="form-control" [(ngModel)]="editedPilot.lastName" name="lastName" >
+            <div *ngIf="lastName?.invalid && (lastName.dirty || lastName.touched)"
+            class="alert alert-danger">
+            <div *ngIf="lastName.errors.required">
+                flightNumber is required.
+            </div>
+            <div *ngIf="lastName.errors.minlength">
+                flightNumber must be at least 4 characters long.
+            </div>
+          </div>
         </div>
         <div class="form-group">
             <label for="birthDate" class="col-sm-4 col-form-label">Pilot birthDate</label>
-            <input id="birthDate" type="datetime-local" class="form-control" [(ngModel)]="editedPilot.birthday" name="birthday" >
+            <input id="birthDate" #birthDate="ngModel" type="datetime-local" class="form-control" [(ngModel)]="editedPilot.birthday" name="birthday" >
+            <div *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)"
+              class="alert alert-danger">
+              <div *ngIf="birthDate.errors.required">
+                   is required.
+              </div>
+            </div>
         </div>
         <div class="form-group">
             <label for="experience" class="col-sm-4 col-form-label">Pilot experience</label>
-            <input id="experience" type="text" class="form-control" [(ngModel)]="editedPilot.experience" name="experience" >
+            <input id="experience" #experience="ngModel" type="text" class="form-control" [(ngModel)]="editedPilot.experience" name="experience" >
+            <div *ngIf="experience.invalid && (experience.dirty || experience.touched)"
+              class="alert alert-danger">
+              <div *ngIf="experience.errors.required">
+                   is required.
+              </div>
+            </div>
         </div>
         <div class="form-group">
-            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success form-control" />
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success form-control"
+            [disabled]="crewId.invalid
+                      || firstName.invalid
+                      || birthDate.invalid
+                      || experience.invalid
+                      || lastName.invalid" />
         </div>
         <div class="form-group">
             <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning form-control" />

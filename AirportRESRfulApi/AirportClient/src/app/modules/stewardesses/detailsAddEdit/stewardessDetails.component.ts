@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StewardessesService } from 'src/app/services/stewardess.service';
-import { Stewardess } from 'src/app/models/stewardess.model';
+import { StewardessesService } from '../../../services/stewardess.service';
+import { Stewardess } from '../../../models/stewardess.model';
 
 @Component({
   selector: 'app-stewardessDetails-details',

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatSort,  MatTableDataSource, PageEvent, Sort } from '@angular/material';
-import { Stewardess } from 'src/app/models/stewardess.model';
-import { StewardessesService } from 'src/app/services/stewardess.service';
+import { Stewardess } from '../../models/stewardess.model';
+import { StewardessesService } from '../../services/stewardess.service';
 
 @Component({
   selector: 'app-stewardesses',

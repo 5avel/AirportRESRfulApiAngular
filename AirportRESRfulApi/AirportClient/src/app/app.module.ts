@@ -20,8 +20,12 @@ import { MaterialModule } from './material.module'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PilotsComponent } from './modules/pilots/pilots.component';
 import { PilotDetailsComponent } from './modules/pilots/detailsAddEdit/pilotDetails.component';
-import { StewardessesComponent } from 'src/app/modules/stewardesses/stewardesses.component';
-import { StewardessDetailsComponent } from 'src/app/modules/stewardesses/detailsAddEdit/stewardessDetails.component';
+import { StewardessesComponent } from './modules/stewardesses/stewardesses.component';
+import { StewardessDetailsComponent } from './modules/stewardesses/detailsAddEdit/stewardessDetails.component';
+import { CrewsComponent } from 'src/app/modules/crews/crews.component';
+import { CrewDetailsComponent } from 'src/app/modules/crews/detailsAddEdit/crewDetails.component';
+import { PlanesComponent } from 'src/app/modules/planes/planes.component';
+import { PlaneDetailsComponent } from 'src/app/modules/planes/detailsAddEdit/planeDetails.component';
 
 const appRoutes: Routes =[
   { path: '', pathMatch: 'full', redirectTo: '/flights'},
@@ -38,6 +42,12 @@ const appRoutes: Routes =[
   { path: 'stewardesses', component: StewardessesComponent },
     { path: 'stewardesses/new', component: StewardessDetailsComponent },
     { path: 'stewardesses/:id', component: StewardessDetailsComponent },
+  { path: 'crews', component: CrewsComponent },
+    { path: 'crews/new', component: CrewDetailsComponent },
+    { path: 'crews/:id', component: CrewDetailsComponent },
+  { path: 'planes', component: PlanesComponent },
+    { path: 'planes/new', component: PlaneDetailsComponent },
+    { path: 'planes/:id', component: PlaneDetailsComponent },
   { path: '**', redirectTo: '/'}
 ];
 
@@ -52,7 +62,11 @@ const appRoutes: Routes =[
     PilotsComponent,
     PilotDetailsComponent,
     StewardessesComponent,
-    StewardessDetailsComponent
+    StewardessDetailsComponent,
+    CrewsComponent,
+    CrewDetailsComponent,
+    PlanesComponent,
+    PlaneDetailsComponent
   ],
   imports: [
     BrowserModule,
