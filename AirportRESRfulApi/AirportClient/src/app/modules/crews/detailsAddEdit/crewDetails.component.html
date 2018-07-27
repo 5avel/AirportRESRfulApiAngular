@@ -1,0 +1,71 @@
+<h1>Crew details</h1>
+<input type="button" value="Back" class="btn btn-default"  [routerLink]='["/pilots"]' />
+<ng-template [ngTemplateOutlet]="loadTemplate()"
+[ngTemplateOutletContext]="{ $implicit: entity}">
+</ng-template>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-entity>
+<form >
+  <div class="form-group">
+    <label for="CrewID" class="col-sm-4 col-form-label">ID</label>
+    <input id="CrewID" type="text" readonly class="form-control" value="{{entity?.id}}">
+  </div>
+  <div class="form-group">
+      <label for="departureId" class="col-sm-4 col-form-label">Crew Id</label>
+      <input id="departureId" type="text" readonly  class="form-control" value="{{entity?.departureId}}" name="id" >
+    </div>
+  <div class="form-group">
+    <label for="name" class="col-sm-4 col-form-label"> name</label>
+    <input id="name" type="text" readonly class="form-control" value="{{entity?.name}}">
+  </div>
+  <div class="form-group">
+    <input type="button" value="Изменить" class="btn btn-info form-control" (click)="edit()" />
+  </div>
+  <div class="form-group">
+    <input type="button" value="Удалить" (click)="delete()" class="btn btn-danger form-control" />
+  </div>
+</form>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <form >
+        <div class="form-group">
+          <label for="CrewID" class="col-sm-4 col-form-label">ID</label>
+          <input id="CrewID" type="text" readonly  class="form-control" [(ngModel)]="editedCrew.id" name="id" >
+        </div>
+        <div class="form-group">
+            <label for="departureId" class="col-sm-4 col-form-label">departureId</label>
+            <input id="departureId" #departureId="ngModel" type="text" required  class="form-control" [(ngModel)]="editedCrew.departureId" name="departureId" >
+            <div *ngIf="departureId?.invalid && (departureId.dirty || departureId.touched)"
+              class="alert alert-danger">
+              <div *ngIf="departureId.errors.required">
+                   is required.
+              </div>
+            </div>
+          </div>
+       
+        <div class="form-group">
+            <label for="name" class="col-sm-4 col-form-label">Crew name</label>
+            <input id="name" #name="ngModel" type="text" required minlength="3" maxlength="50" class="form-control" [(ngModel)]="editedCrew.name" name="name" >
+            <div *ngIf="name?.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                flightNumber is required.
+            </div>
+            <div *ngIf="name.errors.minlength">
+                flightNumber must be at least 4 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success form-control"
+            [disabled]="departureId.invalid
+                      || name.invalid" />
+        </div>
+        <div class="form-group">
+            <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning form-control" />
+        </div>
+      </form>
+</ng-template>

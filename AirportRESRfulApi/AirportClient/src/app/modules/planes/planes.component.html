@@ -1,0 +1,56 @@
+<h1>Pilots list</h1>
+<input type="button" value="Add" class="btn btn-default"  [routerLink]='["/planes/new"]' />
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+       <!-- id Column -->
+       <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+       <!-- crewId Column -->
+       <ng-container matColumnDef="departureId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> departureId </th>
+          <td mat-cell *matCellDef="let element"> {{element.departureId}} </td>
+        </ng-container>
+
+         <!-- firstName Column -->
+         <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+           <!-- planeTypeId Column -->
+        <ng-container matColumnDef="planeTypeId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> planeTypeId </th>
+            <td mat-cell *matCellDef="let element"> {{element.planeTypeId}} </td>
+          </ng-container>
+      
+        <!-- birthDate Column -->
+        <ng-container matColumnDef="releaseDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> releaseDate </th>
+          <td mat-cell *matCellDef="let element"> {{element.releaseDate | date:'yyyy-MM-dd HH:mm'}} </td>
+        </ng-container>
+      
+      
+
+        <ng-container matColumnDef="btnInfo">
+            <th mat-header-cell *matHeaderCellDef > btnInfo </th>
+            <td mat-cell *matCellDef="let element">
+              <input type="button" value="View details" class="btn btn-default" [routerLink]="['/planes', element.id]"  />
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+  <div>
+    &nbsp;
+  </div>

@@ -1,0 +1,101 @@
+<h1>Plane details</h1>
+<input type="button" value="Back" class="btn btn-default"  [routerLink]='["/pilots"]' />
+<ng-template [ngTemplateOutlet]="loadTemplate()"
+[ngTemplateOutletContext]="{ $implicit: entity}">
+</ng-template>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-entity>
+<form >
+  <div class="form-group">
+    <label for="id" class="col-sm-4 col-form-label">ID</label>
+    <input id="id" type="text" readonly class="form-control" value="{{entity?.id}}">
+  </div>
+  <div class="form-group">
+      <label for="departureId" class="col-sm-4 col-form-label">departureId</label>
+      <input id="departureId" type="text" readonly  class="form-control" value="{{entity?.departureId}}" name="id" >
+    </div>
+  <div class="form-group">
+    <label for="name" class="col-sm-4 col-form-label"> name</label>
+    <input id="name" type="text" readonly class="form-control" value="{{entity?.name}}">
+  </div>
+  <div class="form-group">
+    <label for="planeTypeId" class="col-sm-4 col-form-label"> planeTypeId</label>
+    <input id="planeTypeId" type="text" readonly class="form-control" value="{{entity?.planeTypeId}}">
+  </div>
+  <div class="form-group">
+      <label for="releaseDate" class="col-sm-4 col-form-label"> releaseDate</label>
+      <input id="releaseDate" type="datetime-local" readonly class="form-control" value="{{entity?.releaseDate}}">
+    </div>
+    
+  <div class="form-group">
+    <input type="button" value="Изменить" class="btn btn-info form-control" (click)="edit()" />
+  </div>
+  <div class="form-group">
+    <input type="button" value="Удалить" (click)="delete()" class="btn btn-danger form-control" />
+  </div>
+</form>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <form >
+        <div class="form-group">
+          <label for="PlaneID" class="col-sm-4 col-form-label">PlaneID</label>
+          <input id="PlaneID" type="text" readonly  class="form-control" [(ngModel)]="editedPlane.id" name="id" >
+        </div>
+        <div class="form-group">
+            <label for="departureId" class="col-sm-4 col-form-label">departureId</label>
+            <input id="departureId" #departureId="ngModel" type="text" required  class="form-control" [(ngModel)]="editedPlane.departureId" name="departureId" >
+            <div *ngIf="departureId?.invalid && (departureId.dirty || departureId.touched)"
+              class="alert alert-danger">
+              <div *ngIf="departureId.errors.required">
+                   is required.
+              </div>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-4 col-form-label">name</label>
+          <input id="name" #name="ngModel" type="text" required minlength="3" maxlength="50" class="form-control" [(ngModel)]="editedPlane.name" name="name" >
+          <div *ngIf="editedPlane.name?.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+                flightNumber is required.
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                flightNumber must be at least 4 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="planeTypeId" class="col-sm-4 col-form-label">planeTypeId</label>
+            <input id="planeTypeId" #planeTypeId="ngModel" type="text" required  class="form-control" [(ngModel)]="editedPlane.planeTypeId" name="planeTypeId" >
+            <div *ngIf="planeTypeId?.invalid && (planeTypeId.dirty || planeTypeId.touched)"
+            class="alert alert-danger">
+            <div *ngIf="planeTypeId.errors.required">
+              planeTypeId is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="releaseDate" class="col-sm-4 col-form-label">Plane releaseDate</label>
+            <input id="releaseDate" #releaseDate="ngModel" type="datetime-local" class="form-control" [(ngModel)]="editedPlane.releaseDate" name="releaseDate" >
+            <div *ngIf="releaseDate.invalid && (releaseDate.dirty || releaseDate.touched)"
+              class="alert alert-danger">
+              <div *ngIf="releaseDate.errors.required">
+                   is required.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success form-control"
+            [disabled]="departureId.invalid
+                      || name.invalid
+                      || releaseDate.invalid
+                      || planeTypeId.invalid" />
+        </div>
+        <div class="form-group">
+            <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning form-control" />
+        </div>
+      </form>
+</ng-template>
