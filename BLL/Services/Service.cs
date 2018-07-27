@@ -25,9 +25,10 @@ namespace AirportRESRfulApi.BLL.Services
 
         public virtual async Task<TEntityDto> AddAsync(TEntityDto entity)
         {
+            entity.Id = 0;
             TEntity makingEntity = _mapper.Map<TEntityDto, TEntity>(entity);
             TEntity makedEntity = await _repository.AddAsync(makingEntity);
-            entity.Id = 0;
+            
             await _unitOfWork.SaveChangesAsync();
 
             return _mapper.Map<TEntity, TEntityDto>(makedEntity);

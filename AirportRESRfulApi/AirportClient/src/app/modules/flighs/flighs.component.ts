@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
-import { Flight } from '../models/flight';
-import { FlightsService } from '../services/flighs.service';
-import { Observable } from 'rxjs';
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
+import { FlightsService } from '../../services/flighs.service';
+import { Flight } from '../../models/flight.model';
 
 @Component({
   selector: 'app-flighs',
@@ -39,8 +37,6 @@ export class FlighsComponent implements OnInit {
       });
     });
   }
-
- 
 
   addFlight() {
     this.editedFlight = new Flight(0, "", "", "", "", "");
@@ -88,7 +84,8 @@ export class FlighsComponent implements OnInit {
     }
     this.editedFlight = null;
   }
-  // удаление пользователя
+  
+  // удаление 
   deleteFlight(flight: Flight) {
     this.service.deleteFlight(flight).subscribe(data => {
       this.statusMessage = 'Данные успешно удалены',

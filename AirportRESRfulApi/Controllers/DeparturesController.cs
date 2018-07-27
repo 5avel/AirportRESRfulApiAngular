@@ -39,7 +39,7 @@ namespace AirportRESRfulApi.Controllers
         {
             var result = await _departuresSrvice.AddAsync(entity);
 
-            if (result == null) return NotFound();
+            //if (result == null) return NotFound();
 
             return Ok(result);
         }

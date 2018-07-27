@@ -1,0 +1,61 @@
+<h1>Departure details</h1>
+<input type="button" value="Back" class="btn btn-default"  [routerLink]='["/departures"]' />
+<ng-template [ngTemplateOutlet]="loadTemplate()"
+[ngTemplateOutletContext]="{ $implicit: entity}">
+</ng-template>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-entity>
+<form >
+  <div class="form-group">
+    <label for="DepartureID" class="col-sm-4 col-form-label">DepartureID</label>
+    <input id="DepartureID" type="text" readonly class="form-control" value="{{entity?.id}}">
+  </div>
+  <div class="form-group">
+      <label for="flightId" class="col-sm-4 col-form-label">Flight Id</label>
+      <input id="flightId" type="text" readonly  class="form-control" value="{{entity?.flightId}}" name="id" >
+    </div>
+  <div class="form-group">
+    <label for="FlightNumber" class="col-sm-4 col-form-label">Flight Number</label>
+    <input id="FlightNumber" type="text" readonly class="form-control" value="{{entity?.flightNumber}}">
+  </div>
+  <div class="form-group">
+    <label for="DepartureTime" class="col-sm-4 col-form-label">Departure Time</label>
+    <input id="DepartureTime" type="datetime-local" readonly class="form-control" value="{{entity?.departureTime}}">
+  </div>
+  <div class="form-group">
+    <input type="button" value="Изменить" class="btn btn-info form-control" (click)="edit()" />
+  </div>
+  <div class="form-group">
+    <input type="button" value="Удалить" (click)="delete()" class="btn btn-danger form-control" />
+  </div>
+</form>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <form >
+        <div class="form-group">
+          <label for="DepartureID" class="col-sm-4 col-form-label">DepartureID</label>
+          <input id="DepartureID" type="text" readonly  class="form-control" [(ngModel)]="editedDeparture.id" name="id" >
+        </div>
+        <div class="form-group">
+            <label for="flightId" class="col-sm-4 col-form-label">Flight Id</label>
+            <input id="flightId" type="text"  class="form-control" [(ngModel)]="editedDeparture.flightId" name="id" >
+          </div>
+        <div class="form-group">
+          <label for="FlightNumber" class="col-sm-4 col-form-label">Flight Number</label>
+          <input id="FlightNumber" type="text"  class="form-control" [(ngModel)]="editedDeparture.flightNumber" name="flightNumber" >
+        </div>
+        <div class="form-group">
+            <label for="DepartureTime2" class="col-sm-4 col-form-label">Departure Time</label>
+            <input id="DepartureTime2" type="datetime-local" class="form-control" [(ngModel)]="editedDeparture.departureTime" name="departureTime" >
+        </div>
+        <div class="form-group">
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success form-control" />
+        </div>
+        <div class="form-group">
+            <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning form-control" />
+        </div>
+      </form>
+</ng-template>

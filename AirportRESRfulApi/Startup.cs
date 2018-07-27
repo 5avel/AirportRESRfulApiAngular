@@ -71,6 +71,8 @@ namespace AirportRESRfulApi
             {
                 configuration.RootPath = "AirportClient/dist";
             });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +90,8 @@ namespace AirportRESRfulApi
                     PropertyNameHandling.CamelCase;
             });
 
+            app.UseCors(b => b.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -95,18 +99,19 @@ namespace AirportRESRfulApi
                     template: "api/{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "AirportClient";
+            //app.UseSpa(spa =>
+            //{
+            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+            //    // see https://go.microsoft.com/fwlink/?linkid=864501
+
+            //    spa.Options.SourcePath = "AirportClient";
                
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //    }
+            //});
 
         }
 

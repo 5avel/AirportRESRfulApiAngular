@@ -91,9 +91,9 @@ namespace AirportRESRfulApi.DAL
                 );
 
             builder.Entity<Crew>().HasData(
-                new Crew { Id = 1, DepartureId = 1 },
-                new Crew { Id = 2, DepartureId = 2 },
-                new Crew { Id = 3, DepartureId = 3 }
+                new Crew { Id = 1, DepartureId = 1, Name = "crew1" },
+                new Crew { Id = 2, DepartureId = 2, Name = "crew2" },
+                new Crew { Id = 3, DepartureId = 3, Name = "crew3" }
                 );
             builder.Entity<Pilot>().HasData(
                 new Pilot { Id = 1, CrewId = 1, FirstName = "Ivan", LastName = "Ivanov", Experience = 3, Birthday = new DateTime(1987, 1, 24)},

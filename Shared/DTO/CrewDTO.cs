@@ -4,8 +4,7 @@
     using System.Collections.Generic;
     public class CrewDto : BaseDto
     {
-        public int? DepartureId { get; set; }        
-        public PilotDto Pilot { get; set; }
-        public List<StewardessDto> Stewardesses { get; set; }
+        public int? DepartureId { get; set; }
+        public string Name { get; set; }
     }
 }
