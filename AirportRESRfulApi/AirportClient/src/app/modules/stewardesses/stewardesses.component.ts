@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatSort,  MatTableDataSource, PageEvent, Sort } from '@angular/material';
-import { Pilot } from '../../models/pilot.model';
-import { PilotsService } from '../../services/pilots.service';
+import { Stewardess } from 'src/app/models/stewardess.model';
+import { StewardessesService } from 'src/app/services/stewardess.service';
 
 @Component({
-  selector: 'app-pilots',
-  templateUrl: './pilots.component.html',
-  styleUrls: ['./pilots.component.css']
+  selector: 'app-stewardesses',
+  templateUrl: './stewardesses.component.html',
+  styleUrls: ['./stewardesses.component.css']
 })
-export class PilotsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'crewId', 'firstName', 'lastName', 'birthday', 'experience', 'btnInfo'];
+export class StewardessesComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'crewId', 'firstName', 'lastName', 'birthday', 'btnInfo'];
   
-  dataSource: MatTableDataSource<Pilot>;
-  data: Array<Pilot>;
+  dataSource: MatTableDataSource<Stewardess>;
+  data: Array<Stewardess>;
 
-  constructor(private service: PilotsService) { 
+  constructor(private service: StewardessesService) { 
   }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class PilotsComponent implements OnInit {
   }
 
   private load() {
-    this.service.getAll().subscribe((data: Pilot[]) => {
+    this.service.getAll().subscribe((data: Stewardess[]) => {
       this.data = data;
       this.dataSource = new MatTableDataSource(data);
     });
@@ -45,7 +45,6 @@ export class PilotsComponent implements OnInit {
         case 'id': return compare(a.id, b.id, isAsc);
         case 'crewId': return compare(a.crewId, b.crewId, isAsc);
         case 'birthday': return compare(a.birthday, b.birthday, isAsc);
-        case 'experience': return compare(a.experience, b.experience, isAsc);
         case 'firstName': return compare(a.firstName, b.firstName, isAsc);
         case 'lastName': return compare(a.lastName, b.lastName, isAsc);
         default: return 0;

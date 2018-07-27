@@ -4,7 +4,7 @@ export class Pilot {
       public crewId: number,
       public firstName: string,
       public lastName: string,
-      public birthDate: string,
+      public birthday: string,
       public experience: number // in ticks (timeSpan)
     ) { }
   }

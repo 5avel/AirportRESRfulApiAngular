@@ -18,7 +18,10 @@ import { DepartureDetailsComponent } from './modules/departures/detailsAddEdit/d
 import { TicketsComponent } from './modules/tickets/tickets.component';
 import { MaterialModule } from './material.module'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { PilotsComponent } from 'src/app/modules/pilots/pilots.component';
+import { PilotsComponent } from './modules/pilots/pilots.component';
+import { PilotDetailsComponent } from './modules/pilots/detailsAddEdit/pilotDetails.component';
+import { StewardessesComponent } from 'src/app/modules/stewardesses/stewardesses.component';
+import { StewardessDetailsComponent } from 'src/app/modules/stewardesses/detailsAddEdit/stewardessDetails.component';
 
 const appRoutes: Routes =[
   { path: '', pathMatch: 'full', redirectTo: '/flights'},
@@ -30,6 +33,11 @@ const appRoutes: Routes =[
     { path: 'departures/:id', component: DepartureDetailsComponent },
   { path: 'tickets', component: TicketsComponent },
   { path: 'pilots', component: PilotsComponent },
+    { path: 'pilots/new', component: PilotDetailsComponent },
+    { path: 'pilots/:id', component: PilotDetailsComponent },
+  { path: 'stewardesses', component: StewardessesComponent },
+    { path: 'stewardesses/new', component: StewardessDetailsComponent },
+    { path: 'stewardesses/:id', component: StewardessDetailsComponent },
   { path: '**', redirectTo: '/'}
 ];
 
@@ -41,7 +49,10 @@ const appRoutes: Routes =[
     DeparturesComponent,
     DepartureDetailsComponent,
     TicketsComponent,
-    PilotsComponent
+    PilotsComponent,
+    PilotDetailsComponent,
+    StewardessesComponent,
+    StewardessDetailsComponent
   ],
   imports: [
     BrowserModule,

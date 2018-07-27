@@ -1,0 +1,69 @@
+<h1>Stewardess details</h1>
+<input type="button" value="Back" class="btn btn-default"  [routerLink]='["/stewardesses"]' />
+<ng-template [ngTemplateOutlet]="loadTemplate()"
+[ngTemplateOutletContext]="{ $implicit: entity}">
+</ng-template>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-entity>
+<form >
+  <div class="form-group">
+    <label for="ID" class="col-sm-4 col-form-label">ID</label>
+    <input id="ID" type="text" readonly class="form-control" value="{{entity?.id}}">
+  </div>
+  <div class="form-group">
+      <label for="crewId" class="col-sm-4 col-form-label">Crew Id</label>
+      <input id="crewId" type="text" readonly  class="form-control" value="{{entity?.crewId}}" name="id" >
+    </div>
+  <div class="form-group">
+    <label for="firstName" class="col-sm-4 col-form-label">Flight firstName</label>
+    <input id="firstName" type="text" readonly class="form-control" value="{{entity?.firstName}}">
+  </div>
+  <div class="form-group">
+    <label for="lastName" class="col-sm-4 col-form-label">Pilot lastName</label>
+    <input id="lastName" type="text" readonly class="form-control" value="{{entity?.lastName}}">
+  </div>
+  <div class="form-group">
+      <label for="birthDate" class="col-sm-4 col-form-label">Pilot birthDate</label>
+      <input id="birthDate" type="datetime-local" readonly class="form-control" value="{{entity?.birthday}}">
+    </div>
+  <div class="form-group">
+    <input type="button" value="Изменить" class="btn btn-info form-control" (click)="edit()" />
+  </div>
+  <div class="form-group">
+    <input type="button" value="Удалить" (click)="delete()" class="btn btn-danger form-control" />
+  </div>
+</form>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <form >
+        <div class="form-group">
+          <label for="ID" class="col-sm-4 col-form-label">ID</label>
+          <input id="ID" type="text" readonly  class="form-control" [(ngModel)]="editedPilot.id" name="id" >
+        </div>
+        <div class="form-group">
+            <label for="crewId" class="col-sm-4 col-form-label">Crew Id</label>
+            <input id="crewId" type="text"  class="form-control" [(ngModel)]="editedPilot.crewId" name="id" >
+          </div>
+        <div class="form-group">
+          <label for="firstName" class="col-sm-4 col-form-label">firstName</label>
+          <input id="firstName" type="text"  class="form-control" [(ngModel)]="editedPilot.firstName" name="firstName" >
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="col-sm-4 col-form-label">Pilot lastName</label>
+            <input id="lastName" type="text" class="form-control" [(ngModel)]="editedPilot.lastName" name="lastName" >
+        </div>
+        <div class="form-group">
+            <label for="birthDate" class="col-sm-4 col-form-label">Pilot birthDate</label>
+            <input id="birthDate" type="datetime-local" class="form-control" [(ngModel)]="editedPilot.birthday" name="birthday" >
+        </div>
+        <div class="form-group">
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success form-control" />
+        </div>
+        <div class="form-group">
+            <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning form-control" />
+        </div>
+      </form>
+</ng-template>
