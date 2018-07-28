@@ -1,5 +1,5 @@
-<h1>Pilots list</h1>
-<input type="button" value="Add" class="btn btn-default"  [routerLink]='["/pilots/new"]' />
+<h1>PlaneTypes list</h1>
+<input type="button" value="Add" class="btn btn-default"  [routerLink]='["/planeTypes/new"]' />
 <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
@@ -14,40 +14,40 @@
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
 
-       <!-- crewId Column -->
-       <ng-container matColumnDef="crewId">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> crewId </th>
-          <td mat-cell *matCellDef="let element"> {{element.crewId}} </td>
+       <!-- model Column -->
+       <ng-container matColumnDef="model">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> model </th>
+          <td mat-cell *matCellDef="let element"> {{element.model}} </td>
         </ng-container>
 
-         <!-- firstName Column -->
-         <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> firstName </th>
-            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+         <!-- range Column -->
+         <ng-container matColumnDef="range">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> range </th>
+            <td mat-cell *matCellDef="let element"> {{element.range}} </td>
           </ng-container>
 
-           <!-- lastName Column -->
-        <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> lastName </th>
-            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+           <!-- seats Column -->
+        <ng-container matColumnDef="seats">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> seats </th>
+            <td mat-cell *matCellDef="let element"> {{element.seats}} </td>
           </ng-container>
       
-        <!-- birthDate Column -->
-        <ng-container matColumnDef="birthday">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> birthday </th>
-          <td mat-cell *matCellDef="let element"> {{element.birthday | date:'yyyy-MM-dd HH:mm'}} </td>
+        <!-- serviceLife Column -->
+        <ng-container matColumnDef="serviceLife">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> serviceLife </th>
+          <td mat-cell *matCellDef="let element"> {{element.serviceLife}} </td>
         </ng-container>
       
-        <!-- experience Column -->
-        <ng-container matColumnDef="experience">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> experience </th>
-          <td mat-cell *matCellDef="let element"> {{element.experience}} </td>
+        <!-- capacity Column -->
+        <ng-container matColumnDef="capacity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> capacity </th>
+          <td mat-cell *matCellDef="let element"> {{element.capacity}} </td>
         </ng-container>
 
         <ng-container matColumnDef="btnInfo">
             <th mat-header-cell *matHeaderCellDef > btnInfo </th>
             <td mat-cell *matCellDef="let element">
-              <input type="button" value="View details" class="btn btn-default" [routerLink]="['/pilots', element.id]"  />
+              <input type="button" value="View details" class="btn btn-default" [routerLink]="['/planeTypes', element.id]"  />
             </td>
         </ng-container>
 

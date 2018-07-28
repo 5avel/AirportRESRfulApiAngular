@@ -42,6 +42,16 @@
                   <span class='glyphicon glyphicon-th-list'></span> Stewardesses
                 </a>
               </li>
+              <li [routerLinkActive]='["link-active"]'>
+                <a [routerLink]='["/planes"]' (click)='collapse()'>
+                  <span class='glyphicon glyphicon-th-list'></span> Planes
+                </a>
+              </li>
+              <li [routerLinkActive]='["link-active"]'>
+                <a [routerLink]='["/planeTypes"]' (click)='collapse()'>
+                  <span class='glyphicon glyphicon-th-list'></span> PlaneTypes
+                </a>
+              </li>
       </ul>
     </div>
   </div>

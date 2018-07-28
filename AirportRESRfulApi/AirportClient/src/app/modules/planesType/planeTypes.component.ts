@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatSort,  MatTableDataSource, PageEvent, Sort } from '@angular/material';
-import { Pilot } from '../../models/pilot.model';
-import { PilotsService } from '../../services/pilots.service';
+import { PlaneType } from '../../models/planeType.model';
+import { PlaneTypesService } from '../../services/planeTypes.service';
 
 @Component({
-  selector: 'app-pilots',
-  templateUrl: './pilots.component.html',
-  styleUrls: ['./pilots.component.css']
+  selector: 'app-planeTypes',
+  templateUrl: './planeTypes.component.html',
+  styleUrls: ['./planeTypes.component.css']
 })
-export class PilotsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'crewId', 'firstName', 'lastName', 'birthday', 'experience', 'btnInfo'];
+export class PlaneTypesComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'capacity', 'model', 'range', 'seats', 'serviceLife', 'btnInfo'];
   
-  dataSource: MatTableDataSource<Pilot>;
-  data: Array<Pilot>;
+  dataSource: MatTableDataSource<PlaneType>;
+  data: Array<PlaneType>;
 
-  constructor(private service: PilotsService) { 
+  constructor(private service: PlaneTypesService) { 
   }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class PilotsComponent implements OnInit {
   }
 
   private load() {
-    this.service.getAll().subscribe((data: Pilot[]) => {
+    this.service.getAll().subscribe((data: PlaneType[]) => {
       this.data = data;
       this.dataSource = new MatTableDataSource(data);
     });
@@ -43,11 +43,11 @@ export class PilotsComponent implements OnInit {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'id': return compare(a.id, b.id, isAsc);
-        case 'crewId': return compare(a.crewId, b.crewId, isAsc);
-        case 'birthday': return compare(a.birthday, b.birthday, isAsc);
-        case 'experience': return compare(a.experience, b.experience, isAsc);
-        case 'firstName': return compare(a.firstName, b.firstName, isAsc);
-        case 'lastName': return compare(a.lastName, b.lastName, isAsc);
+        case 'capacity': return compare(a.capacity, b.capacity, isAsc);
+        case 'model': return compare(a.model, b.model, isAsc);
+        case 'range': return compare(a.range, b.range, isAsc);
+        case 'seats': return compare(a.seats, b.seats, isAsc);
+        case 'serviceLife': return compare(a.serviceLife, b.serviceLife, isAsc);
         default: return 0;
       }
     }));
