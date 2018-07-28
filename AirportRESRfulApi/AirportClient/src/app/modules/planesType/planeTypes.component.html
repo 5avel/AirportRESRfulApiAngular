@@ -1,0 +1,60 @@
+<h1>PlaneTypes list</h1>
+<input type="button" value="Add" class="btn btn-default"  [routerLink]='["/planeTypes/new"]' />
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+
+       <!-- id Column -->
+       <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+       <!-- model Column -->
+       <ng-container matColumnDef="model">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> model </th>
+          <td mat-cell *matCellDef="let element"> {{element.model}} </td>
+        </ng-container>
+
+         <!-- range Column -->
+         <ng-container matColumnDef="range">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> range </th>
+            <td mat-cell *matCellDef="let element"> {{element.range}} </td>
+          </ng-container>
+
+           <!-- seats Column -->
+        <ng-container matColumnDef="seats">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> seats </th>
+            <td mat-cell *matCellDef="let element"> {{element.seats}} </td>
+          </ng-container>
+      
+        <!-- serviceLife Column -->
+        <ng-container matColumnDef="serviceLife">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> serviceLife </th>
+          <td mat-cell *matCellDef="let element"> {{element.serviceLife}} </td>
+        </ng-container>
+      
+        <!-- capacity Column -->
+        <ng-container matColumnDef="capacity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> capacity </th>
+          <td mat-cell *matCellDef="let element"> {{element.capacity}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="btnInfo">
+            <th mat-header-cell *matHeaderCellDef > btnInfo </th>
+            <td mat-cell *matCellDef="let element">
+              <input type="button" value="View details" class="btn btn-default" [routerLink]="['/planeTypes', element.id]"  />
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+  <div>
+    &nbsp;
+  </div>

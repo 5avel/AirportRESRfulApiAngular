@@ -22,10 +22,12 @@ import { PilotsComponent } from './modules/pilots/pilots.component';
 import { PilotDetailsComponent } from './modules/pilots/detailsAddEdit/pilotDetails.component';
 import { StewardessesComponent } from './modules/stewardesses/stewardesses.component';
 import { StewardessDetailsComponent } from './modules/stewardesses/detailsAddEdit/stewardessDetails.component';
-import { CrewsComponent } from 'src/app/modules/crews/crews.component';
-import { CrewDetailsComponent } from 'src/app/modules/crews/detailsAddEdit/crewDetails.component';
-import { PlanesComponent } from 'src/app/modules/planes/planes.component';
-import { PlaneDetailsComponent } from 'src/app/modules/planes/detailsAddEdit/planeDetails.component';
+import { CrewsComponent } from './modules/crews/crews.component';
+import { CrewDetailsComponent } from './modules/crews/detailsAddEdit/crewDetails.component';
+import { PlanesComponent } from './modules/planes/planes.component';
+import { PlaneDetailsComponent } from './modules/planes/detailsAddEdit/planeDetails.component';
+import { PlaneTypesComponent } from 'src/app/modules/planesType/planeTypes.component';
+import { PlaneTypeDetailsComponent } from 'src/app/modules/planesType/detailsAddEdit/planeTypeDetails.component';
 
 const appRoutes: Routes =[
   { path: '', pathMatch: 'full', redirectTo: '/flights'},
@@ -48,6 +50,9 @@ const appRoutes: Routes =[
   { path: 'planes', component: PlanesComponent },
     { path: 'planes/new', component: PlaneDetailsComponent },
     { path: 'planes/:id', component: PlaneDetailsComponent },
+  { path: 'planeTypes', component: PlaneTypesComponent },
+    { path: 'planeTypes/new', component: PlaneTypeDetailsComponent },
+    { path: 'planeTypes/:id', component: PlaneTypeDetailsComponent },
   { path: '**', redirectTo: '/'}
 ];
 
@@ -66,7 +71,9 @@ const appRoutes: Routes =[
     CrewsComponent,
     CrewDetailsComponent,
     PlanesComponent,
-    PlaneDetailsComponent
+    PlaneDetailsComponent,
+    PlaneTypesComponent,
+    PlaneTypeDetailsComponent
   ],
   imports: [
     BrowserModule,

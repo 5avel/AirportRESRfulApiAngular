@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PilotsService } from '../../../services/pilots.service';
-import { Pilot } from '../../../models/pilot.model';
+import { PlaneTypesService } from '../../../services/planeTypes.service';
+import { PlaneType } from '../../../models/planeType.model';
 
 @Component({
-  selector: 'app-pilot-details',
-  templateUrl: './pilotDetails.component.html',
-  styleUrls: ['./pilotDetails.component.css'],
-  providers: [PilotsService]
+  selector: 'app-planeType-details',
+  templateUrl: './planeTypeDetails.component.html',
+  styleUrls: ['./planeTypeDetails.component.css'],
+  providers: [PlaneTypesService]
 })
-export class PilotDetailsComponent implements OnInit {
+export class PlaneTypeDetailsComponent implements OnInit {
 
     //типы шаблонов
-    @ViewChild('readOnlyTemplate') readOnlyTemplate: TemplateRef<Pilot>;
-    @ViewChild('editTemplate') editTemplate: TemplateRef<Pilot>;
+    @ViewChild('readOnlyTemplate') readOnlyTemplate: TemplateRef<PlaneType>;
+    @ViewChild('editTemplate') editTemplate: TemplateRef<PlaneType>;
 
    id: number;
    private sub: any;
-   entity: Pilot;
-   editedPilot: Pilot;
+   entity: PlaneType;
+   editedPlaneType: PlaneType;
    isNewRecord: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute, private service:PilotsService) {
+  constructor(private router: Router, private route: ActivatedRoute, private service:PlaneTypesService) {
      
    }
 
@@ -35,22 +35,21 @@ export class PilotDetailsComponent implements OnInit {
     }
     else
     {
-      this.editedPilot= new Pilot(0, 0, '','','',0);
+      this.editedPlaneType= new PlaneType(0, '',0,0,0,0);
       this.isNewRecord = true;
     }
   }
 
   private load() {
-    this.service.getById(this.id).subscribe((data: Pilot) => {
+    this.service.getById(this.id).subscribe((data: PlaneType) => {
       this.entity = data;
-      this.entity.birthday = this.entity.birthday.slice(0, 16);
       
     });
   }
 
     // загружаем один из двух шаблонов
     loadTemplate() {
-      if (this.editedPilot) {
+      if (this.editedPlaneType) {
         return this.editTemplate;
       } else {
         return this.readOnlyTemplate;
@@ -59,23 +58,23 @@ export class PilotDetailsComponent implements OnInit {
 
       // редактирование
   edit() {
-      this.editedPilot = this.entity;
+      this.editedPlaneType = this.entity;
   }
 
     // сохраняем 
     save() {
       if (this.isNewRecord) {
         // добавляем 
-        this.service.create(this.editedPilot).subscribe(data => {
+        this.service.create(this.editedPlaneType).subscribe(data => {
           this.isNewRecord = false;
-          this.editedPilot = null;
-          this.router.navigate(['/pilots']);
+          this.editedPlaneType = null;
+          this.router.navigate(['/planeTypes']);
         });
       } else {
         // изменяем 
-        this.service.update(this.editedPilot.id, this.editedPilot).subscribe(data => {
+        this.service.update(this.editedPlaneType.id, this.editedPlaneType).subscribe(data => {
           this.load();
-          this.editedPilot = null;
+          this.editedPlaneType = null;
         });
         
       }
@@ -86,15 +85,15 @@ export class PilotDetailsComponent implements OnInit {
     // если отмена при добавлении, удаляем последнюю запись
     if (this.isNewRecord) {
       this.isNewRecord = false;
-      this.router.navigate(['/pilots']);
+      this.router.navigate(['/planeTypes']);
     }
-    this.editedPilot = null;
+    this.editedPlaneType = null;
   }
 
     // удаление 
     delete() {
       this.service.delete(this.entity).subscribe(data => {
-        this.router.navigate(['/pilots']);
+        this.router.navigate(['/planeTypes']);
       });
     }
 

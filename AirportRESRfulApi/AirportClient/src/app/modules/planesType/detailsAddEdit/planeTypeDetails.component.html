@@ -1,0 +1,118 @@
+<h1>PlaneType details</h1>
+<input type="button" value="Back" class="btn btn-default"  [routerLink]='["/planeTypes"]' />
+<ng-template [ngTemplateOutlet]="loadTemplate()"
+[ngTemplateOutletContext]="{ $implicit: entity}">
+</ng-template>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-entity>
+<form >
+  <div class="form-group">
+    <label for="PilotID" class="col-sm-4 col-form-label">ID</label>
+    <input id="PilotID" type="text" readonly class="form-control" value="{{entity?.id}}">
+  </div>
+  <div class="form-group">
+      <label for="crewId" class="col-sm-4 col-form-label">Crew Id</label>
+      <input id="crewId" type="text" readonly  class="form-control" value="{{entity?.capacity}}" name="id" >
+    </div>
+  <div class="form-group">
+    <label for="model" class="col-sm-4 col-form-label"> model</label>
+    <input id="model" type="text" readonly class="form-control" value="{{entity?.model}}">
+  </div>
+  <div class="form-group">
+    <label for="range" class="col-sm-4 col-form-label"> range</label>
+    <input id="range" type="text" readonly class="form-control" value="{{entity?.range}}">
+  </div>
+  <div class="form-group">
+      <label for="seats" class="col-sm-4 col-form-label"> seats</label>
+      <input id="seats" type="datetime-local" readonly class="form-control" value="{{entity?.seats}}">
+    </div>
+    <div class="form-group">
+        <label for="serviceLife" class="col-sm-4 col-form-label"> serviceLife</label>
+        <input id="serviceLife" type="text" readonly class="form-control" value="{{entity?.serviceLife}}">
+      </div>
+  <div class="form-group">
+    <input type="button" value="Изменить" class="btn btn-info form-control" (click)="edit()" />
+  </div>
+  <div class="form-group">
+    <input type="button" value="Удалить" (click)="delete()" class="btn btn-danger form-control" />
+  </div>
+</form>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <form >
+        <div class="form-group">
+          <label for="PilotID" class="col-sm-4 col-form-label">PilotID</label>
+          <input id="PilotID" type="text" readonly  class="form-control" [(ngModel)]="editedPlaneType.id" name="id" >
+        </div>
+        <div class="form-group">
+            <label for="model" class="col-sm-4 col-form-label">model</label>
+            <input id="model" #model="ngModel" type="text" required  class="form-control" [(ngModel)]="editedPlaneType.model" name="crewId" >
+            <div *ngIf="model?.invalid && (model.dirty || model.touched)"
+              class="alert alert-danger">
+              <div *ngIf="model.errors.required">
+                   is required.
+              </div>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="capacity" class="col-sm-4 col-form-label">capacity</label>
+          <input id="capacity" #capacity="ngModel" type="text" required minlength="3" maxlength="50" class="form-control" [(ngModel)]="editedPlaneType.capacity" name="capacity" >
+          <div *ngIf="editedPlaneType.capacity?.invalid && (capacity.dirty || capacity.touched)"
+            class="alert alert-danger">
+            <div *ngIf="capacity.errors.required">
+                flightNumber is required.
+            </div>
+            <div *ngIf="capacity.errors.minlength">
+                flightNumber must be at least 4 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="range" class="col-sm-4 col-form-label">Pilot range</label>
+            <input id="range" #range="ngModel" type="text" required minlength="3" maxlength="50" class="form-control" [(ngModel)]="editedPlaneType.range" name="range" >
+            <div *ngIf="range?.invalid && (range.dirty || range.touched)"
+            class="alert alert-danger">
+            <div *ngIf="range.errors.required">
+                flightNumber is required.
+            </div>
+            <div *ngIf="range.errors.minlength">
+                flightNumber must be at least 4 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="seats" class="col-sm-4 col-form-label"> seats</label>
+            <input id="seats" #seats="ngModel" type="text" class="form-control" [(ngModel)]="editedPlaneType.seats" name="seats" >
+            <div *ngIf="seats.invalid && (seats.dirty || seats.touched)"
+              class="alert alert-danger">
+              <div *ngIf="seats.errors.required">
+                   is required.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="serviceLife" class="col-sm-4 col-form-label"> serviceLife</label>
+            <input id="serviceLife" #serviceLife="ngModel" type="text" class="form-control" [(ngModel)]="editedPlaneType.serviceLife" name="serviceLife" >
+            <div *ngIf="serviceLife.invalid && (serviceLife.dirty || serviceLife.touched)"
+              class="alert alert-danger">
+              <div *ngIf="serviceLife.errors.required">
+                   is required.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-success form-control"
+            [disabled]="crewId.invalid
+                      || capacity.invalid
+                      || seats.invalid
+                      || serviceLife.invalid
+                      || range.invalid" />
+        </div>
+        <div class="form-group">
+            <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning form-control" />
+        </div>
+      </form>
+</ng-template>
