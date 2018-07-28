@@ -1,8 +1,8 @@
 # AirportRESRfulApiEF TESTS
 ASP.NET Core Web API for Airport
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-ANGULAR => 'AirportRESRfulApiAngular/AirportRESRfulApi/AirportClient/'|
-=======================================================================
+==========================
+ANGULAR => 'AirportRESRfulApiAngular/AirportRESRfulApi/AirportClient/'
+=====================================
 
 How to compile
 ==============
