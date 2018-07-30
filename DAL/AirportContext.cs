@@ -28,7 +28,8 @@ namespace AirportRESRfulApi.DAL
             //optionsBuilder.UseSqlServer(this.configuration.GetConnectionString("AirportMSSQLlocaldb"));
 
             // ForMac))
-            optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
+            //optionsBuilder.UseInMemoryDatabase(Guid.NewGuid().ToString());
+            optionsBuilder.UseSqlite("Data Source=Airport.db");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
